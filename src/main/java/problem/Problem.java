@@ -30,12 +30,17 @@ public class Problem {
      * список точек
      */
     private ArrayList<Point> points;
+    private ArrayList<line> lines;
 
     /**
      * Конструктор класса задачи
      */
     public Problem() {
         points = new ArrayList<>();
+        lines = new ArrayList<>();
+        lines.add(new line(0.99, 0.5 ,0.3, 0.7));
+        lines.add(new line(0.98, 0.5 ,0.3, 0.7));
+        lines.add(new line(0.99, 0.5 ,0.3, 0.7));
     }
 
     /**
@@ -133,6 +138,8 @@ public class Problem {
     public void render(GL2 gl) {
         for (Point point : points) {
             point.render(gl);
+        }  for (line l : lines) {
+            l.render(gl);
         }
     }
 }
