@@ -136,10 +136,17 @@ public class Problem {
      * @param gl переменная OpenGL для рисования
      */
     public void render(GL2 gl) {
-        for (Point point : points) {
-            point.render(gl);
-        }  for (line l : lines) {
-            l.render(gl);
-        }
+//        for (Point point : points) {
+//            point.render(gl);
+//        }  for (line l : lines) {
+//            l.render(gl);
+//        }
+        gl.glColor3d(0,1,1);
+        Figure.renderPoint(gl, 0.5, 0.75,8);
+        Figure.renderLine(gl, 0, 0, 0.25, 0.9);
+        gl.glColor3d(0,1,0);
+        Figure.renderTriangles(gl, 0.25 , 0.6 , 0, 0, 0.9, 0.7, false);
+        gl.glColor3d(1,1,1);
+        Figure.renderQuad(gl, 0.3, 0.3, -0.5, 0.3, -0.7, -0.4, 0.2, -0.2, true);
     }
 }
