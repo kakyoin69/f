@@ -147,6 +147,10 @@ public class Problem {
         gl.glColor3d(0,1,0);
         Figure.renderTriangles(gl, 0.25 , 0.6 , 0, 0, 0.9, 0.7, false);
         gl.glColor3d(1,1,1);
-        Figure.renderQuad(gl, 0.3, 0.3, -0.5, 0.3, -0.7, -0.4, 0.2, -0.2, true);
+        Figure.renderQuad(gl, 0.3, 0.3, -0.5, 0.3, -0.7, -0.4, 0.2, -0.2, false);
+        Figure.renderCircle(gl, 0, 0, 0.3, true);
+
+
+
     }
 }
