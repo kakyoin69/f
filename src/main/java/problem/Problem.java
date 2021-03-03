@@ -30,17 +30,18 @@ public class Problem {
      * список точек
      */
     private ArrayList<Point> points;
-    private ArrayList<line> lines;
+    private ArrayList<Line> Lines;
+    ArrayList<Point> MPoints = new ArrayList<Point>();
 
     /**
      * Конструктор класса задачи
      */
     public Problem() {
         points = new ArrayList<>();
-        lines = new ArrayList<>();
-        lines.add(new line(0.99, 0.5 ,0.3, 0.7));
-        lines.add(new line(0.98, 0.5 ,0.3, 0.7));
-        lines.add(new line(0.99, 0.5 ,0.3, 0.7));
+        Lines = new ArrayList<>();
+        Lines.add(new Line(0.99, 0.5 ,0.3, 0.7));
+        Lines.add(new Line(0.98, 0.5 ,0.3, 0.7));
+        Lines.add(new Line(0.99, 0.5 ,0.3, 0.7));
     }
 
     /**
@@ -141,14 +142,40 @@ public class Problem {
 //        }  for (line l : lines) {
 //            l.render(gl);
 //        }
-        gl.glColor3d(0,1,1);
-        Figure.renderPoint(gl, 0.5, 0.75,8);
-        Figure.renderLine(gl, 0, 0, 0.25, 0.9);
-        gl.glColor3d(0,1,0);
-        Figure.renderTriangles(gl, 0.25 , 0.6 , 0, 0, 0.9, 0.7, false);
-        gl.glColor3d(1,1,1);
-        Figure.renderQuad(gl, 0.3, 0.3, -0.5, 0.3, -0.7, -0.4, 0.2, -0.2, false);
-        Figure.renderCircle(gl, 0, 0, 0.3, true);
+//        gl.glColor3d(0,1,1);
+//        Figure.renderPoint(gl, 0.5, 0.75,8);
+//        Figure.renderLine(gl, 0, 0, 0.25, 0.9);
+//        gl.glColor3d(0,1,0);
+//        Figure.renderTriangles(gl, 0.25 , 0.6 , 0, 0, 0.9, 0.7, false);
+//        gl.glColor3d(1,1,1);
+//        Figure.renderQuad(gl, 0.3, 0.3, -0.5, 0.3, -0.7, -0.4, 0.2, -0.2, false);
+//        Figure.renderCircle(gl, 0, 0, 0.3, true);
+//
+//
+//        Point p1 = new Point (double posX1, double posY1);
+//        Point p2 = new Point (double posX2, double posY2);
+//        Figure.renderLine(gl, posX1, posY1, posX2, posY2);
+
+
+        Point p1= new Point(0.1,0.1);
+        Point p2 = new Point(0.7,0.8)
+    Line line = new Line(p1,p2);
+    line.renderLine(gl);
+int g = MPoints.size();
+    for(int i = 0; i < g; i++){
+        line.distanceToPoint(point )
+
+
+    }
+
+
+
+
+
+
+
+
+
 
 
 
