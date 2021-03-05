@@ -48,15 +48,10 @@ public class Line {
         return s;
     }
     public double distanceToPoint( Point p ){
-
         double f = Math.sqrt(a*a + b*b) ;
         double k = a*p.x + b*p.y + c;
         double q = Math.abs(k / f);
         return q;                            //расст от точки p до прямой line
-
-
-
-
     }
 
 
