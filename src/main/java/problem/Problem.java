@@ -3,6 +3,7 @@ package problem;
 import javax.media.opengl.GL2;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -30,18 +31,14 @@ public class Problem {
      * список точек
      */
     public ArrayList<Point> points;
-    public ArrayList<Line> Lines;
-    public ArrayList<Point> MPoints = new ArrayList<Point>();
-
     /**
      * Конструктор класса задачи
      */
     public Problem() {
         points = new ArrayList<>();
-        Lines = new ArrayList<>();
-        Lines.add(new Line(0.99, 0.5, 0.3, 0.7));
-        Lines.add(new Line(0.98, 0.5, 0.3, 0.7));
-        Lines.add(new Line(0.99, 0.5, 0.3, 0.7));
+//        linesLines.add(new Line(0.99, 0.5, 0.3, 0.7));
+//        Lines.add(new Line(0.98, 0.5, 0.3, 0.7));
+//        Lines.add(new Line(0.99, 0.5, 0.3, 0.7));
     }
 
     /**
@@ -52,10 +49,20 @@ public class Problem {
      * @param setVal номер множества
      */
     public void addPoint(double x, double y, int setVal) {
-        Point point = new Point(x, y, setVal);
+        Point point = new Point(x, y);
         points.add(point);
     }
 
+    public void addRandomPoints(int n) {
+        for(int i = 0; i < n; i++) {
+            Point p = Point.getRandomPoint();
+            points.add(p);
+        }
+    }
+
+
+
+    public void clear() {points.clear();}
     /**
      * Решить задачу
      */
@@ -89,7 +96,7 @@ public class Problem {
                 double y = sc.nextDouble();
                 int setVal = sc.nextInt();
                 sc.nextLine();
-                Point point = new Point(x, y, setVal);
+                Point point = new Point(x, y);
                 points.add(point);
             }
         } catch (Exception ex) {
@@ -104,7 +111,7 @@ public class Problem {
         try {
             PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME));
             for (Point point : points) {
-                out.printf("%.2f %.2f %d\n", point.x, point.y, point.setNumber);
+                out.printf("%.2f %.2f %d\n", point.x, point.y);
             }
             out.close();
         } catch (IOException ex) {
@@ -112,24 +119,6 @@ public class Problem {
         }
     }
 
-    /**
-     * Добавить заданное число случайных точек
-     *
-     * @param n кол-во точек
-     */
-    public void addRandomPoints(int n) {
-        for (int i = 0; i < n; i++) {
-            Point p = Point.getRandomPoint();
-            points.add(p);
-        }
-    }
-
-    /**
-     * Очистить задачу
-     */
-    public void clear() {
-        points.clear();
-    }
 
     /**
      * Нарисовать задачу
@@ -137,9 +126,8 @@ public class Problem {
      * @param gl переменная OpenGL для рисования
      */
     public void render(GL2 gl) {
-//        for (Point point : points) {
-//            point.render(gl);
-//        }  for (line l : lines) {
-//
+        for (Point point : points) {
+            point.render(gl);
+        }
     }
 }

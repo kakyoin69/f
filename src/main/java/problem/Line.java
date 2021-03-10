@@ -2,6 +2,7 @@ package problem;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
+import java.util.Random;
 
 
 public class Line {
@@ -21,8 +22,26 @@ public class Line {
         this.y2 = y2;
     }
 
-    public Line(Point p1, Point p2) {
+//    public Line(Point p1, Point p2) {
+//
+//    }
 
+    /**
+     * Получить случайную точку
+     *
+     * @return случайная точка
+     */
+    static Line getRandomLine() {
+        Random r = new Random();
+        double x1 = r.nextDouble()*2-1;
+        double y1 =  r.nextDouble()*2 - 1;
+        double x2 = r.nextDouble()*2-1;
+        double y2 =  r.nextDouble() *2 - 1;
+        return new Line(x1, y1, x2, y2);
+        //  double nx = (double) r.nextInt(50) / 25 - 1;
+     //   double ny = (double) r.nextInt(50) / 25 - 1;
+     //   int nSetVal = r.nextInt(2);
+     //   return new Point(nx, ny, nSetVal);
     }
 
     public void renderLine(GL2 gl){
