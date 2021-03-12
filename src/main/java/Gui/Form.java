@@ -137,4 +137,8 @@ public class Form extends JFrame {
     public static void main(String[] args) {
         new Form();
     }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }

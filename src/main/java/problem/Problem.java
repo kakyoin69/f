@@ -2,9 +2,7 @@ package problem;
 
 import javax.media.opengl.GL2;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Класс задачи
@@ -16,17 +14,16 @@ public class Problem {
     public static final String PROBLEM_TEXT = "ПОСТАНОВКА ЗАДАЧИ:\n" +
             "Дано множество точек на плоскости. Выберем из этого множества две точки и проведем через них прямую.\n" +
             "Назовем дистанцией такую максимальную величину, что на расстоянии \n" +
-    "от прямой не меньше, чем дистанция лежит хотя бы половина оставшихся точек \n" +
-    "множества (кроме этих двух). Найти такую пару точек, у которой дистанция будет минимальна.\n" +
-   " В качестве ответа: выделить эти две точки, нарисовать проходящую через них прямую,\n" +
-    "выделить точки, лежащие на дистанции, \n" +
-    "нарисовать дистанцию (отрезок от одной из самых удаленных точек до прямой),\n" +
-    "а также <<коридор>> (две прямые, параллельные \n" +
-    "найденной прямой, находящиеся на найденной дистанции)";
+            "от прямой не меньше, чем дистанция лежит хотя бы половина оставшихся точек \n" +
+            "множества (кроме этих двух). Найти такую пару точек, у которой дистанция будет минимальна.\n" +
+            " В качестве ответа: выделить эти две точки, нарисовать проходящую через них прямую,выделить \n" +
+            "точки, лежащие на дистанции, нарисовать дистанцию (отрезок от одной из самых удаленных\n" +
+            "точек до прямой), а также <<коридор>> (две прямые, параллельные \n" +
+            "найденной прямой, находящиеся на найденной дистанции)";
     /**
      * заголовок окна
      */
-    public static final String PROBLEM_CAPTION = "Итоговый проект ученика 10-7 Иванова Ивана";
+    public static final String PROBLEM_CAPTION = "Итоговый проект ученицы 10-7 Галяутдиновой Динары";
 
     /**
      * путь к файлу
@@ -37,6 +34,10 @@ public class Problem {
      * список точек
      */
     public ArrayList<Point> points;
+
+    public Point resA;
+    public Point resB;
+
     /**
      * Конструктор класса задачи
      */
@@ -50,8 +51,8 @@ public class Problem {
     /**
      * Добавить точку
      *
-     * @param x      координата X точки
-     * @param y      координата Y точки
+     * @param x координата X точки
+     * @param y координата Y точки
      */
     public void addPoint(double x, double y) {
         Point point = new Point(x, y);
@@ -59,29 +60,36 @@ public class Problem {
     }
 
     public void addRandomPoints(int n) {
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             Point p = Point.getRandomPoint();
             points.add(p);
         }
     }
 
 
+    public void clear() {
+        points.clear();
+    }
 
-    public void clear() {points.clear();}
     /**
      * Решить задачу
      */
     public void solve() {
+        double maxDist = 0;
         // перебираем пары точек
-        for (Point p : points) {
-            for (Point p2 : points) {
-                // если точки являются разными
-                if (p != p2) {
-                    // если координаты у них совпадают
-                    if (Math.abs(p.x - p2.x) < 0.0001 && Math.abs(p.y - p2.y) < 0.0001) {
-                        p.isSolution = true;
-                        p2.isSolution = true;
-                    }
+        for (int i = 0; i < points.size(); i++) {
+            for (int j = i + 1; j < points.size(); j++) {
+                Line line = new Line(points.get(i).x, points.get(i).y, points.get(j).x, points.get(j).y);
+                double[] tDist = new double[points.size()];
+                for (int k = 0; k < points.size(); k++) {
+                    tDist[k] = line.distanceToPoint(points.get(k));
+                }
+                Arrays.sort(tDist);
+                double dist = tDist[tDist.length / 2];  ///////!!!!!!!!!!!
+                if (dist > maxDist) {
+                    maxDist = dist;
+                    resA = points.get(i);
+                    resB = points.get(j);
                 }
             }
         }
@@ -135,4 +143,6 @@ public class Problem {
             point.render(gl);
         }
     }
+
+
 }
