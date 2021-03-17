@@ -45,7 +45,7 @@ public class Line {
     }
 
     public void renderLine(GL2 gl){
-        gl.glPointSize(1.0f);
+        gl.glLineWidth(3);
         gl.glBegin(GL.GL_LINES);
         int samples = 100;
         double dx = x2 - x1;
@@ -74,5 +74,21 @@ public class Line {
     }
 
 
+    // public Line parallelLine(Point p){
+      //  double a1 = a ;
+      //  double b1 = b;
+     //   double c1 = c;
+    //    c1 = - a * p.xax - b * p.yax;
+   //     return new Line (a1, b1, c1);
+ //   }
 
+
+    public Line getLeftRange(double dist) {
+
+        double leftk
+
+    }
+
+    public Line getRightRange(double dist) {
+    }
 }

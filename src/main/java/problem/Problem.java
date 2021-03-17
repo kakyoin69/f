@@ -35,8 +35,11 @@ public class Problem {
      */
     public ArrayList<Point> points;
 
-    public Point resA;
-    public Point resB;
+    public Point resA = null;
+    public Point resB = null;
+    Line answline = null;
+    Line rangeALine = null;
+    Line rangeBLine = null;
 
     /**
      * Конструктор класса задачи
@@ -69,13 +72,16 @@ public class Problem {
 
     public void clear() {
         points.clear();
+        resA = null;
+        resB = null;
+        answline = null;
     }
 
     /**
      * Решить задачу
      */
     public void solve() {
-        double maxDist = 0;
+        double minDist = 1e10;
         // перебираем пары точек
         for (int i = 0; i < points.size(); i++) {
             for (int j = i + 1; j < points.size(); j++) {
@@ -85,14 +91,26 @@ public class Problem {
                     tDist[k] = line.distanceToPoint(points.get(k));
                 }
                 Arrays.sort(tDist);
-                double dist = tDist[tDist.length / 2];  ///////!!!!!!!!!!!
-                if (dist > maxDist) {
-                    maxDist = dist;
+                //System.out.println(Arrays.toString(tDist));
+                double dist;
+//                if (tDist.length % 2 == 0) {
+//                    dist = tDist[tDist.length / 2];  ///////!!!!!!!!!!!
+//                } else {
+//                    dist = tDist[tDist.length / 2] - 0.5;
+//                }
+
+                dist = tDist[tDist.length / 2];
+                if (dist < minDist) {
+                    minDist = dist;
                     resA = points.get(i);
                     resB = points.get(j);
+                    answline = line;
+                    rangeALine = line.getRightRange(dist);
+                    rangeBLine = line.getLeftRange(dist);
                 }
             }
         }
+
     }
 
     /**
@@ -139,9 +157,20 @@ public class Problem {
      * @param gl переменная OpenGL для рисования
      */
     public void render(GL2 gl) {
+        gl.glColor3d(1, 1, 1);
         for (Point point : points) {
             point.render(gl);
         }
+        gl.glColor3d(1, 0.2, 0.7);
+        if (answline != null && resA != null && resB != null) {
+            answline.renderLine(gl);
+            Figure.renderPoint(gl, resA.x, resA.y, 7);
+            Figure.renderPoint(gl, resB.x, resB.y, 7);
+            rangeALine.renderLine(gl);
+            rangeBLine.renderLine(gl);
+        }
+
+
     }
 
 

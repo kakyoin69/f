@@ -7,7 +7,7 @@
     </constraints>
     <properties>
       <background color="-10312113"/>
-      <preferredSize width="1365" height="745"/>
+      <preferredSize width="1465" height="745"/>
       <requestFocusEnabled value="true"/>
     </properties>
     <border type="none"/>
