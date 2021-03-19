@@ -9,14 +9,6 @@ import java.util.Random;
  */
 public class Point {
     /**
-     * константа множества 1
-     */
-    public static final int SET_1 = 0;
-    /**
-     * константа множества 2
-     */
-    public static final int SET_2 = 1;
-    /**
      * пересекается ли точка с точкой из другого множества
      * (является ли она решением)
      */
@@ -35,7 +27,6 @@ public class Point {
      *
      * @param x         координата
      * @param y         координата y
-     * @param setNumber номер множества, к которому принадлежит точка
      */
     Point(double x, double y) {
         this.x = x;

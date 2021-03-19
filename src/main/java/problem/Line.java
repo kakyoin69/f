@@ -10,6 +10,7 @@ public class Line {
     private double a;
     private double b;
     private double c;
+
     double x1; double y1;double x2; double y2;
     public Line(double x1, double y1, double x2, double y2){
 
@@ -22,7 +23,17 @@ public class Line {
         this.y2 = y2;
     }
 
-//    public Line(Point p1, Point p2) {
+    public Line(double a, double b, double c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+    }
+
+    //    public Line(Point p1, Point p2) {
 //
 //    }
 
@@ -85,10 +96,15 @@ public class Line {
 
     public Line getLeftRange(double dist) {
 
-        double leftk
+        double al;
+        double bl;
+
+        return new Line(al,bl,cl);
+      //  double leftk = 0;               ////////////////////////////!!!!!!!!!!!!!!!!!!;
 
     }
 
     public Line getRightRange(double dist) {
+        return new Line();
     }
 }

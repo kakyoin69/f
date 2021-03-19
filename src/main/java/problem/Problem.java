@@ -125,7 +125,6 @@ public class Problem {
             while (sc.hasNextLine()) {
                 double x = sc.nextDouble();
                 double y = sc.nextDouble();
-                int setVal = sc.nextInt();
                 sc.nextLine();
                 Point point = new Point(x, y);
                 points.add(point);
@@ -142,7 +141,7 @@ public class Problem {
         try {
             PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME));
             for (Point point : points) {
-                out.printf("%.2f %.2f %d\n", point.x, point.y);
+                out.printf("%.2f %.2f", point.x, point.y);
             }
             out.close();
         } catch (IOException ex) {
