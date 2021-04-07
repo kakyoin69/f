@@ -40,12 +40,14 @@ public class Problem {
     Line answline = null;
     Line rangeALine = null;
     Line rangeBLine = null;
+    double minDist;
 
     /**
      * Конструктор класса задачи
      */
     public Problem() {
         points = new ArrayList<>();
+        minDist = 1e10;
 //        linesLines.add(new Line(0.99, 0.5, 0.3, 0.7));
 //        Lines.add(new Line(0.98, 0.5, 0.3, 0.7));
 //        Lines.add(new Line(0.99, 0.5, 0.3, 0.7));
@@ -75,13 +77,14 @@ public class Problem {
         resA = null;
         resB = null;
         answline = null;
+        minDist = 1e10;
     }
 
     /**
      * Решить задачу
      */
     public void solve() {
-        double minDist = 1e10;
+
         // перебираем пары точек
         for (int i = 0; i < points.size(); i++) {
             for (int j = i + 1; j < points.size(); j++) {
@@ -105,8 +108,9 @@ public class Problem {
                     resA = points.get(i);
                     resB = points.get(j);
                     answline = line;
-                    rangeALine = line.getRightRange(dist);
-                    rangeBLine = line.getLeftRange(dist);
+                    ArrayList<Line> ranges = answline.getRanges(dist);
+                    rangeALine = ranges.get(0);
+                    rangeBLine = ranges.get(1);
                 }
             }
         }
@@ -167,6 +171,10 @@ public class Problem {
             Figure.renderPoint(gl, resB.x, resB.y, 7);
             rangeALine.renderLine(gl);
             rangeBLine.renderLine(gl);
+            gl.glColor3d(0, 1, 0);
+            for (Point point : answline.getPoints(minDist)){
+                Figure.renderPoint(gl,point.x,point.y,5);
+            }
         }
 
 
