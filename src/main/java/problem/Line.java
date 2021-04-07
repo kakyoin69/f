@@ -85,26 +85,38 @@ public class Line {
     }
 
 
+    //Point pp1 = new Point
+
     // public Line parallelLine(Point p){
-      //  double a1 = a ;
-      //  double b1 = b;
-     //   double c1 = c;
+    //  double a1 = a ;
+    //  double b1 = b;
+    //   double c1 = c;
     //    c1 = - a * p.xax - b * p.yax;
-   //     return new Line (a1, b1, c1);
- //   }
+    //     return new Line (a1, b1, c1);
+    //   }
 
 
-    public Line getLeftRange(double dist) {
+  //  public Line getLeftRange(double dist) {
 
-        double al;
-        double bl;
+    //    double al;
+       // double bl;
 
-        return new Line(al,bl,cl);
-      //  double leftk = 0;               ////////////////////////////!!!!!!!!!!!!!!!!!!;
+    //    return new Line(al,bl,cl);
+    //   double leftk = 0;               ////////////////////////////!!!!!!!!!!!!!!!!!!;
+      //  leftk =
 
-    }
+
+
+
+
+
+   // }
 
     public Line getRightRange(double dist) {
-        return new Line();
+        return new Line(1,1,1,1);
+    }
+
+    public Line getLeftRange(double dist) {
+        return new Line(1,1,1,1);
     }
 }
