@@ -34,6 +34,7 @@ public class Problem {
      * список точек
      */
     public ArrayList<Point> points;
+    public ArrayList<Point> resPoints;
 
     public Point resA = null;
     public Point resB = null;
@@ -47,6 +48,7 @@ public class Problem {
      */
     public Problem() {
         points = new ArrayList<>();
+        resPoints = new ArrayList<>();
         minDist = 1e10;
 //        linesLines.add(new Line(0.99, 0.5, 0.3, 0.7));
 //        Lines.add(new Line(0.98, 0.5, 0.3, 0.7));
@@ -74,6 +76,7 @@ public class Problem {
 
     public void clear() {
         points.clear();
+        resPoints.clear();
         resA = null;
         resB = null;
         answline = null;
@@ -117,6 +120,12 @@ public class Problem {
                 }
             }
         }
+
+        for (Point point : points) {
+            if (answline.distanceToPoint(point) < minDist)
+                resPoints.add(point);
+        }
+
 
     }
 
@@ -181,6 +190,10 @@ public class Problem {
         }
 
 
+        gl.glColor3d(0, 0, 1);
+        for (Point point : resPoints) {
+            point.render(gl);
+        }
     }
 
 
