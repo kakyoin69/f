@@ -2,6 +2,7 @@ package problem;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -78,5 +79,18 @@ public class Point {
     @Override
     public String toString() {
         return "Точка с координатами: {" + x + "," + y + "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return isSolution == point.isSolution && Double.compare(point.x, x) == 0 && Double.compare(point.y, y) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(isSolution, x, y);
     }
 }

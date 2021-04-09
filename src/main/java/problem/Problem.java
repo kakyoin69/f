@@ -88,6 +88,8 @@ public class Problem {
         // перебираем пары точек
         for (int i = 0; i < points.size(); i++) {
             for (int j = i + 1; j < points.size(); j++) {
+                if (points.get(i).equals(points.get(j)))
+                    continue;
                 Line line = new Line(points.get(i).x, points.get(i).y, points.get(j).x, points.get(j).y);
                 double[] tDist = new double[points.size()];
                 for (int k = 0; k < points.size(); k++) {
@@ -109,6 +111,7 @@ public class Problem {
                     resB = points.get(j);
                     answline = line;
                     ArrayList<Line> ranges = answline.getRanges(dist);
+                    System.out.println(ranges + " " + dist);
                     rangeALine = ranges.get(0);
                     rangeBLine = ranges.get(1);
                 }
@@ -121,7 +124,7 @@ public class Problem {
      * Загрузить задачу из файла
      */
     public void loadFromFile() {
-        points.clear();
+        clear();
         try {
             File file = new File(FILE_NAME);
             Scanner sc = new Scanner(file);
@@ -145,7 +148,7 @@ public class Problem {
         try {
             PrintWriter out = new PrintWriter(new FileWriter(FILE_NAME));
             for (Point point : points) {
-                out.printf("%.2f %.2f", point.x, point.y);
+                out.printf("%.2f %.2f\n", point.x, point.y);
             }
             out.close();
         } catch (IOException ex) {
@@ -172,8 +175,8 @@ public class Problem {
             rangeALine.renderLine(gl);
             rangeBLine.renderLine(gl);
             gl.glColor3d(0, 1, 0);
-            for (Point point : answline.getPoints(minDist)){
-                Figure.renderPoint(gl,point.x,point.y,5);
+            for (Point point : answline.getPoints(minDist)) {
+                Figure.renderPoint(gl, point.x, point.y, 5);
             }
         }
 

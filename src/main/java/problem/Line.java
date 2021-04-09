@@ -113,10 +113,9 @@ public class Line {
     public ArrayList<Line> getRanges(double dist) {
         double xo = 0.5;
         double yo = (a * xo + c) / (-b);
-        double koef = yo / xo;
-        double cl = dist / Math.cos(Math.atan(koef));
 
-        double cx = dist / Math.sin(Math.atan(koef));
+        double cl = dist / Math.cos(Math.atan2(-a, b));
+        double cx = dist / Math.sin(Math.atan2(-a, b));
 
         Point p1l = new Point(xo, yo + cl);
         Point p2l = new Point(xo - cx, yo);
@@ -145,7 +144,6 @@ public class Line {
             ranges.add(new Line(xo, cl + yo, xo, yo - cl));
         }
 
-        System.out.println(ranges);
         return ranges;
     }
 
@@ -161,10 +159,8 @@ public class Line {
         double xo = 0.5;
         double yo = (a * xo + c) / (-b);
 
-        double koef = yo / xo;
-        double cl = dist / Math.cos(Math.atan(koef));
-
-        double cx = dist / Math.sin(Math.atan(koef));
+        double cl = dist / Math.cos(Math.atan2(-a, b));
+        double cx = dist / Math.sin(Math.atan2(-a, b));
 
         Point p1l = new Point(xo, yo + cl);
         Point p2l = new Point(xo - cx, yo);
